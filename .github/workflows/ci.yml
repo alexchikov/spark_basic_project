@@ -6,10 +6,10 @@ on:
       - master
 
 jobs:
-  test_:
+  Test Applications:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout
+      - name: Checkout
         uses: actions/checkout@v5
 
       - name: Dependency installation
