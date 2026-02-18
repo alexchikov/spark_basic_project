@@ -25,3 +25,13 @@ def create_all_resoures(spark: SparkSession):
     tables = Tables()
     for table in tables:
         execute_hql(spark, table)
+
+
+def drop_test_tables(spark: SparkSession):
+    for db in spark.catalog.listDatabases():
+        if db.name == "default":
+            continue
+        for table in spark.catalog.listTables(db.name):
+            spark.sql(f"DROP TABLE {db.name+'.'+table.name}")
+        spark.sql(f"DROP DATABASE {db.name}")
+

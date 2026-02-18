@@ -1,4 +1,4 @@
-from utils.testing import create_all_resoures
+from utils.testing import create_all_resoures, drop_test_tables
 from utils.utils import start_session
 from apps.hello_world import run
 import pytest
@@ -11,6 +11,7 @@ def spark():
     spark = start_session("test_hello_app")
     create_all_resoures(spark)
     yield spark
+    drop_test_tables(spark)
     spark.stop()
 
 
