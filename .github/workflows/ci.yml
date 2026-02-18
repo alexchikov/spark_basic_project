@@ -1,0 +1,22 @@
+name: ci.yml
+on:
+  push:
+    branches:
+      - feature/*
+      - master/*
+
+jobs:
+  test_:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v5
+
+      - name: Dependency installation
+        run: |
+          python3 -m pip install poetry
+          poetry lock
+          poetry install
+
+      - name: Run tests
+        run: pytest tests/
